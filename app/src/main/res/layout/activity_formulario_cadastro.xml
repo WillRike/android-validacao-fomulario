@@ -1,113 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.FormularioCadastroActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/formulario_cadastro_titulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:drawablePadding="10dp"
-        android:text="Dados Pessoais"
-        android:textSize="24sp"
-        app:drawableLeftCompat="@drawable/ic_dados_pessoais"
-        app:drawableStartCompat="@drawable/ic_dados_pessoais"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/formulario_cadastro_nome"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/formulario_cadastro_titulo">
+        android:layout_height="match_parent"
+        tools:context=".ui.FormularioCadastroActivity">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:id="@+id/formulario_cadastro_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawablePadding="10dp"
+            android:text="Dados Pessoais"
+            android:textSize="24sp"
+            app:drawableLeftCompat="@drawable/ic_dados_pessoais"
+            app:drawableStartCompat="@drawable/ic_dados_pessoais"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/formulario_cadastro_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome completo" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/formulario_cadastro_titulo">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/formulario_cadastro_cpf"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@id/formulario_cadastro_nome"
-        app:layout_constraintStart_toStartOf="@id/formulario_cadastro_nome"
-        app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_nome">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome completo" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/formulario_cadastro_cpf"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="CPF" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@id/formulario_cadastro_nome"
+            app:layout_constraintStart_toStartOf="@id/formulario_cadastro_nome"
+            app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_nome">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CPF" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/formulario_cadastro_telefone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@id/formulario_cadastro_cpf"
-        app:layout_constraintStart_toStartOf="@id/formulario_cadastro_cpf"
-        app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_cpf">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/formulario_cadastro_telefone"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Telefone com DDD" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@id/formulario_cadastro_cpf"
+            app:layout_constraintStart_toStartOf="@id/formulario_cadastro_cpf"
+            app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_cpf">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/formulario_cadastro_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@id/formulario_cadastro_telefone"
-        app:layout_constraintStart_toStartOf="@id/formulario_cadastro_telefone"
-        app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_telefone">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Telefone com DDD" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/formulario_cadastro_email"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="E-mail" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@id/formulario_cadastro_telefone"
+            app:layout_constraintStart_toStartOf="@id/formulario_cadastro_telefone"
+            app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_telefone">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/formulario_cadastro_senha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@id/formulario_cadastro_email"
-        app:layout_constraintStart_toStartOf="@id/formulario_cadastro_email"
-        app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_email">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-mail" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/formulario_cadastro_senha"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Senha" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@id/formulario_cadastro_email"
+            app:layout_constraintStart_toStartOf="@id/formulario_cadastro_email"
+            app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_email">
 
-    <Button
-        android:id="@+id/formulario_cadastro_botao_cadastrar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="CADASTRAR"
-        app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_senha"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Senha" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/formulario_cadastro_botao_cadastrar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="CADASTRAR"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/formulario_cadastro_senha" />
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
