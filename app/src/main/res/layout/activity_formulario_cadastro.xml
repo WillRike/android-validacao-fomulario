@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.FormularioCadastroActivity">
+        tools:context=".ui.activity.FormularioCadastroActivity">
 
         <TextView
             android:id="@+id/formulario_cadastro_titulo"

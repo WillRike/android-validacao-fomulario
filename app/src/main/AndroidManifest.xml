@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AluraFood"
         tools:targetApi="31">
         <activity
-            android:name=".ui.FormularioCadastroActivity"
+            android:name=".ui.activity.FormularioCadastroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
