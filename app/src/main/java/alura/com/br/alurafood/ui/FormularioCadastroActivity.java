@@ -1,6 +1,7 @@
 package alura.com.br.alurafood.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -9,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import alura.com.br.alurafood.R;
+import br.com.caelum.stella.format.CPFFormatter;
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
 
 public class FormularioCadastroActivity extends AppCompatActivity {
 
@@ -47,8 +51,64 @@ public class FormularioCadastroActivity extends AppCompatActivity {
 
     private void configuraCampoCpf() {
         TextInputLayout textInputCpf = findViewById(R.id.formulario_cadastro_cpf);
-        final EditText campoCpf = textInputCpf.getEditText();
-        adicionaValidacaoPadrao(textInputCpf);
+        EditText campoCpf = textInputCpf.getEditText();
+        assert campoCpf != null;
+        CPFFormatter cpfFormatter = new CPFFormatter();
+        campoCpf.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String cpf = campoCpf.getText().toString();
+                if (!hasFocus) {
+                    if (!validaCampoObrigatorio(cpf, textInputCpf)) return;
+                    if (!validaCampoComOnzeDigitos(cpf)) return;
+                    if (!validaCalculoCpf(cpf, textInputCpf)) return;
+
+                    removeErro(textInputCpf);
+
+                    String cpfFormatado = cpfFormatter.format(cpf);
+                    campoCpf.setText(cpfFormatado);
+                } else {
+                    try {
+                        String cpfSemFormato = cpfFormatter.unformat(cpf);
+                        campoCpf.setText(cpfSemFormato);
+                    } catch (IllegalArgumentException e) {
+                        Log.e("erro formatação cpf", e.getMessage());
+                    }
+                }
+            }
+
+            private Boolean validaCampoComOnzeDigitos(String cpf) {
+                if (cpf.length() != 11) {
+                    textInputCpf.setError("O CPF precisa ter 11 dígitos");
+                    return false;
+                }
+                return true;
+            }
+
+            private Boolean validaCampoObrigatorio(String cpf, TextInputLayout textInputCpf) {
+                if (cpf.isEmpty()) {
+                    textInputCpf.setError("Campo Obrigatório!");
+                    return false;
+                }
+                return true;
+            }
+        });
+    }
+
+    private boolean validaCalculoCpf(String cpf, TextInputLayout textInputCpf) {
+        try {
+            CPFValidator cpfValidator = new CPFValidator();
+            cpfValidator.assertValid(cpf);
+        } catch (InvalidStateException e) {
+            textInputCpf.setError("CPF Inválido");
+            return false;
+        }
+        return true;
+    }
+
+    private void removeErro(TextInputLayout textInputCpf) {
+        textInputCpf.setError(null);
+        textInputCpf.setErrorEnabled(false);
     }
 
     private void configuraCampoNome() {
@@ -75,8 +135,7 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         if (texto.isEmpty()) {
             textInputCampo.setError("Campo Obrigatório!");
         } else {
-            textInputCampo.setError(null);
-            textInputCampo.setErrorEnabled(false);
+            removeErro(textInputCampo);
         }
     }
 }
