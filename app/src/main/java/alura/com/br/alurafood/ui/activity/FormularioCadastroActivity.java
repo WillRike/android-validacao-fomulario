@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import alura.com.br.alurafood.R;
+import alura.com.br.alurafood.formatter.FormataTelefoneComDdd;
 import alura.com.br.alurafood.validator.ValidaCpf;
+import alura.com.br.alurafood.validator.ValidaTelefoneComDDD;
 import alura.com.br.alurafood.validator.ValidacaoPadrao;
 import br.com.caelum.stella.format.CPFFormatter;
 
@@ -47,9 +49,23 @@ public class FormularioCadastroActivity extends AppCompatActivity {
 
     private void configuraCampoTelefone() {
         TextInputLayout textInputTelefone = findViewById(R.id.formulario_cadastro_telefone);
-        final EditText campoTelefone = textInputTelefone.getEditText();
-        adicionaValidacaoPadrao(textInputTelefone);
+        EditText campoTelefoneComDdd = textInputTelefone.getEditText();
+        ValidaTelefoneComDDD validador = new ValidaTelefoneComDDD(textInputTelefone);
+        FormataTelefoneComDdd formatador = new FormataTelefoneComDdd();
+        campoTelefoneComDdd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String telefoneComDdd = campoTelefoneComDdd.getText().toString();
+                if (hasFocus) {
+                    String telefoneComDddSemFormatacao = formatador.remove(telefoneComDdd);
+                    campoTelefoneComDdd.setText(telefoneComDddSemFormatacao);
+                } else {
+                    validador.estaValido();
+                }
+            }
+        });
     }
+
 
     private void configuraCampoCpf() {
         TextInputLayout textInputCpf = findViewById(R.id.formulario_cadastro_cpf);
@@ -61,7 +77,7 @@ public class FormularioCadastroActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    adicionaFormatacao(cpfFormatter, campoCpf);
+                    removeFormatacao(cpfFormatter, campoCpf);
                 } else {
                     validador.estaValido();
                 }
@@ -69,7 +85,7 @@ public class FormularioCadastroActivity extends AppCompatActivity {
         });
     }
 
-    private void adicionaFormatacao(CPFFormatter cpfFormatter, EditText campoCpf) {
+    private void removeFormatacao(CPFFormatter cpfFormatter, EditText campoCpf) {
         String cpf = campoCpf.getText().toString();
         try {
             String cpfSemFormato = cpfFormatter.unformat(cpf);
